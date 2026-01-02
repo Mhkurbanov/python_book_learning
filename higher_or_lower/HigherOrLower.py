@@ -7,6 +7,7 @@ RANKS = ('Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', '
 N_CARDS = 8
 START_SCORE = 50
 
+
 # === ФУНКЦИЯ СОЗДАНИЯ СТАНДАРТНОЙ КОЛОДЫ ===
 def createDeck():
     """ Создает стандартную колоду карт. Возвращает список словарей с картами."""
@@ -16,6 +17,15 @@ def createDeck():
             card = {'rank':rank, 'suit':suit, 'value':value}
             deck.append(card)
     return deck
+
+
+# === ФУНКЦИЯ ДЛЯ ПЕРЕМЕШИВАНИЯ КОЛОДЫ ===
+def shuffleDeck(deck):
+    """ Возвращает перемешанную копию колоды. Исходная колода не изменяется."""
+    shuffled = deck.copy()
+    random.shuffle(shuffled)
+    return shuffled
+
 
 # === ОСНОВНОЙ КОД ===
 def main():
