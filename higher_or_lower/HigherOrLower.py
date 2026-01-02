@@ -36,6 +36,12 @@ def draw_card(deck):
 # === ОСНОВНОЙ КОД ===
 def main():
     print('Welcome to Higher or Lower!')
+    print()
+
+    deck = create_deck()
+    deck = shuffle_deck(deck)
+    current_card = draw_card(deck)
+    print(f"Starting Card: {current_card['rank']} of {current_card['suit']}")
 
 
 if __name__ == "__main__":
