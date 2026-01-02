@@ -1,4 +1,4 @@
-# Higher or Lower - Учебная консольная игра
+# === Higher or Lower - Учебная консольная игра ===
 import random
 
 # === КОНСТАНТЫ КАРТ ===
@@ -7,7 +7,17 @@ RANKS = ('Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', '
 N_CARDS = 8
 START_SCORE = 50
 
+# === ФУНКЦИЯ СОЗДАНИЯ СТАНДАРТНОЙ КОЛОДЫ ===
+def createDeck():
+    """ Создает стандартную колоду карт. Возвращает список словарей с картами."""
+    deck = []
+    for suit in SUITS:
+        for value, rank in enumerate(RANKS, start=1):
+            card = {'rank':rank, 'suit':suit, 'value':value}
+            deck.append(card)
+    return deck
 
+# === ОСНОВНОЙ КОД ===
 def main():
     print('Welcome to Higher or Lower!')
 
