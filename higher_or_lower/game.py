@@ -49,4 +49,32 @@ class Deck:
 
 class Game:
     """ Логика и правила игры """
-    pass
+
+    def __init__(self):
+        self.deck = Deck()
+        self.current_card: Card | None = None
+        self.score: int = 50
+
+    def start(self) -> None:
+        """Запуск игры: создаём и перемешиваем колоду, берём первую карту"""
+        self.deck.populate()
+        self.deck.shuffle()
+        self.current_card = self.deck.draw()
+
+    def guess(self, higher: bool) -> tuple[bool, Card]:
+        """ Игрок делает предположение: - higher=True  → следующая карта будет выше, - higher=False → следующая карта будет ниже;
+            Возвращает: - is_correct: True / False, - next_card: следующая карта. """
+
+        next_card = self.deck.draw()
+        assert self.current_card is not None, "Игра ещё не начата!"
+
+        is_correct = (next_card.value > self.current_card.value) if higher else (next_card.value < self.current_card.value)
+
+        if is_correct:
+            self.score += 20
+        else:
+            self.score -= 15
+
+        self.current_card = next_card
+        return is_correct, next_card
+
