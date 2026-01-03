@@ -1,12 +1,13 @@
 # === МОДУЛЬ С ИГРОВОЙ ЛОГИКОЙ ===
 # Здесь находятся все основные классы игры.
 # Файл не содержит ввода/вывода и не зависит от интерфейса.
+import random
 
 class Card:
     """ Одна игральная карта """
 
-    SUITS = ('Spades', 'Hearts', 'Clubs', 'Diamonds')
     RANKS = ('Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King')
+    SUITS = ('Spades', 'Hearts', 'Clubs', 'Diamonds')
 
     def __init__(self, rank: str, suit: str):
         self.rank = rank
@@ -23,7 +24,27 @@ class Card:
 
 class Deck:
     """ Колода игральных карт """
-    pass
+    def __init__(self):
+        self._cards: list[Card] = []   # Это для IDE, Этот список должен содержать обьекты класса Card
+
+    def populate(self) -> None:
+        """Создаёт стандартную колоду из 52 карт"""
+        self._cards.clear()
+        for suit in Card.SUITS:
+            for rank in Card.RANKS:
+                self._cards.append(Card(rank, suit))
+
+    def shuffle(self) -> None:
+        """Перемешивает колоду"""
+        random.shuffle(self._cards)
+
+    def draw(self) -> Card:
+        """Берёт одну карту из колоды"""
+        return self._cards.pop()
+
+    def __len__(self) -> int:
+        """Количество карт в колоде"""
+        return len(self._cards)
 
 
 class Game:
