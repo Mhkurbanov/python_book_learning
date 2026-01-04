@@ -1,7 +1,7 @@
 from core.game import BlackjackGame
 from core.enums import GameState
-from Projects.python_book_learning.blackjack.ui.console.renderer import ConsoleRenderer
-from Projects.python_book_learning.blackjack.ui.console.input_handler import ConsoleInputHandler
+from ui.console.renderer import ConsoleRenderer
+from ui.console.input_handler import ConsoleInputHandler
 
 
 def main():
